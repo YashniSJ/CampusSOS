@@ -1,0 +1,31 @@
+CAMPUSSOS – PROJECT SUMMARY
+
+Project Title:
+CampusSOS – Smart Campus Emergency Assistance System
+
+Problem:
+Students may not know how to report campus emergencies quickly, and security teams may lack a centralized way to track incidents.
+
+Solution:
+A centralized web application for reporting emergencies and allowing authorized security personnel to monitor and update incidents.
+
+Main Workflow:
+Reported → Assigned → Responding → Resolved
+
+Prototype Modules:
+1. Student Dashboard
+2. Emergency Report Form
+3. My Reports
+4. Security Dashboard
+5. Help & Safety
+
+Suggested future technologies:
+Frontend: React
+Backend: Node.js / Express
+Database: MySQL / Firebase
+Authentication: Role-based login
+Maps: Google Maps or OpenStreetMap
+Notifications: Email/SMS/Push
+
+Note:
+The included prototype intentionally uses browser localStorage so it can run immediately without installing a backend.
