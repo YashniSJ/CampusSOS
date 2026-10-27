@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusSOS | Emergency Assistance</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<header class="topbar">
+  <div class="brand"><span class="logo">🚨</span><div><b>CampusSOS</b><small>Emergency Assistance System</small></div></div>
+  <div class="top-actions"><span id="clock"></span><button class="ghost" onclick="showSection('help')">Help</button></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar">
+  <button class="nav active" data-section="home" onclick="showSection('home')">🏠 Dashboard</button>
+  <button class="nav" data-section="report" onclick="showSection('report')">🚨 Report Emergency</button>
+  <button class="nav" data-section="incidents" onclick="showSection('incidents')">📋 My Reports</button>
+  <button class="nav" data-section="admin" onclick="showSection('admin')">🛡️ Security Dashboard</button>
+  <button class="nav" data-section="help" onclick="showSection('help')">❓ Help & Safety</button>
+</aside>
+
+<main class="content">
+<section id="home" class="section active">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">CAMPUS SAFETY • 24/7</p>
+      <h1>Report an emergency.<br><span>Get help faster.</span></h1>
+      <p>CampusSOS connects students with authorized campus security through a simple emergency reporting workflow.</p>
+      <button class="primary big" onclick="showSection('report')">🚨 Report Emergency</button>
+    </div>
+    <div class="sos-card"><div class="pulse">SOS</div><b>Emergency Hotline</b><strong>+91 1800-000-1122</strong><small>Use CampusSOS for tracked incidents.</small></div>
+  </div>
+  <div class="grid stats">
+    <div class="stat"><span>Open incidents</span><b id="openCount">0</b><small>Need attention</small></div>
+    <div class="stat"><span>Responding</span><b id="respondingCount">0</b><small>Teams dispatched</small></div>
+    <div class="stat"><span>Resolved</span><b id="resolvedCount">0</b><small>Completed cases</small></div>
+  </div>
+  <div class="panel">
+    <div class="panel-head"><h2>How it works</h2><span class="badge">Simple 4-step process</span></div>
+    <div class="steps">
+      <div><i>1</i><b>Report</b><span>Choose emergency type and describe it.</span></div>
+      <div><i>2</i><b>Assign</b><span>Security receives the incident.</span></div>
+      <div><i>3</i><b>Respond</b><span>Authorized responders take action.</span></div>
+      <div><i>4</i><b>Resolve</b><span>Status is updated after assistance.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="report" class="section">
+  <div class="section-title"><div><p class="eyebrow">QUICK REPORT</p><h1>Report an Emergency</h1><p>Provide only the information needed to help responders locate and understand the incident.</p></div></div>
+  <form id="reportForm" class="panel form">
+    <div class="form-grid">
+      <label>Emergency type
+        <select id="type" required>
+          <option value="">Select type</option><option>Medical Emergency</option><option>Accident</option><option>Fire</option><option>Harassment</option><option>Lost Student</option><option>Security Issue</option>
+        </select>
+      </label>
+      <label>Priority
+        <select id="priority" required><option>Critical</option><option selected>High</option><option>Medium</option><option>Low</option></select>
+      </label>
+      <label>Location
+        <div class="inline"><input id="location" placeholder="e.g., CSE Block, Room 204" required><button type="button" class="secondary" onclick="useLocation()">📍 Use location</button></div>
+      </label>
+      <label>Contact number
+        <input id="contact" placeholder="Optional">
+      </label>
+    </div>
+    <label>Description
+      <textarea id="description" rows="5" placeholder="Briefly describe what happened..." required></textarea>
+    </label>
+    <div class="notice">🔒 Your report is visible only to authorized campus safety personnel in this prototype.</div>
+    <div class="form-actions"><button type="button" class="ghost" onclick="showSection('home')">Cancel</button><button class="primary" type="submit">🚨 Submit Emergency Report</button></div>
+  </form>
+</section>
+
+<section id="incidents" class="section">
+  <div class="section-title"><div><p class="eyebrow">STUDENT VIEW</p><h1>My Reports</h1><p>Track the progress of incidents you have submitted.</p></div></div>
+  <div id="myReports" class="cards"></div>
+</section>
+
+<section id="admin" class="section">
+  <div class="section-title"><div><p class="eyebrow">AUTHORIZED ACCESS</p><h1>Security Dashboard</h1><p>Monitor, assign, and update campus incidents.</p></div><button class="secondary" onclick="renderAdmin()">↻ Refresh</button></div>
+  <div class="grid stats">
+    <div class="stat"><span>Total reports</span><b id="adminTotal">0</b></div>
+    <div class="stat"><span>Critical / High</span><b id="adminPriority">0</b></div>
+    <div class="stat"><span>Resolved</span><b id="adminResolved">0</b></div>
+  </div>
+  <div class="panel table-wrap">
+    <table><thead><tr><th>ID</th><th>Type</th><th>Location</th><th>Priority</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminTable"></tbody></table>
+  </div>
+</section>
+
+<section id="help" class="section">
+  <div class="section-title"><div><p class="eyebrow">SAFETY GUIDE</p><h1>Help & Safety</h1></div></div>
+  <div class="grid help-grid">
+    <div class="panel"><h2>🚨 Immediate danger</h2><p>If there is an immediate threat, move to a safe location and contact your campus security/emergency services according to your college policy.</p></div>
+    <div class="panel"><h2>📍 Location matters</h2><p>Give a building, room, floor, landmark, or gate so responders can find you quickly.</p></div>
+    <div class="panel"><h2>🧑‍🤝‍🧑 Stay with others</h2><p>When safe, stay with a trusted person and follow instructions from authorized responders.</p></div>
+    <div class="panel"><h2>🔐 Privacy</h2><p>This prototype stores demo data in your browser. A production system should use secure authentication, encrypted storage, and access controls.</p></div>
+  </div>
+</section>
+</main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
